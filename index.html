@@ -10,23 +10,21 @@
         height: 100px;
         text-align: center;
         vertical-align: middle;
-
         font-size: 25px;
-        /*... other styles ...*/
-        margin-right: 60px; /* adjust as needed */
-
-        /* Target the last child of each row to remove the margin */
-        #Oo_OH,
-        #Oe,
-        #UH_AH {
-          margin-right: 0; /* Resetting margin for the last elements in each row */
-        } /* Or whatever size you prefer */
-        /* Other styles... */
+        margin-right: 60px;
       }
+
+      #Oo_OH,
+      #Oe,
+      #UH_AH {
+        margin-right: 0;
+      }
+
       #vowelSelection {
         display: flex;
         gap: 20px;
       }
+
       #suggestionOptions {
         display: none;
       }
@@ -39,16 +37,26 @@
       #bottomText {
         width: 100%;
         text-align: center;
-        /* Remove default margins */
-        padding: -20px;
       }
 
       #topText {
-        margin-bottom: 15px; /* Adjust as needed */
+        margin-bottom: 15px;
+        white-space: nowrap;
       }
 
       #bottomText {
-        margin-top: -10px; /* Adjust as needed */
+        margin-top: 15px;
+      }
+
+      #topText h2,
+      #topText span {
+        display: inline;
+      }
+
+      #centeringDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       #hexant {
@@ -64,8 +72,6 @@
         toward the bottom row of vowels -- if you want a less girthy chest
         (speaking range) voice, modifty toward the top shrill vowels</i
       >
-
-      <br />
 
       in the Passagio you can choose how to sing the vowels, this presents a
       problem for some, <br /><br /><br />
@@ -90,7 +96,6 @@
       ><input type="text" id="problemWord" /><br /><br />
       <label>Problem Vowel Character in the Word: </label
       ><input type="text" id="problemVowelChar" maxlength="1" /><br /><br />
-
       <div id="vowelSelection">
         <div>
           How that letter Sounds
@@ -104,7 +109,6 @@
             <option value="ee">ee</option>
             <option value="iy">iy</option>
           </select>
-
           <label>Dark:</label>
           <select id="darkVowel">
             <option value="">--Select--</option>
@@ -116,64 +120,72 @@
           </select>
         </div>
       </div>
-      <br /><br />
-
+      <br />
       <button type="button" onclick="showSuggestionOptions()">
         Show Suggestions
       </button>
       <div id="suggestionOptions">
         <label>Select Suggestion: </label>
-        <select id="suggestionSelect">
+        <select id="suggestionSelect" onchange="generateSuggestionOnSelect();">
           <!-- Filled dynamically --></select
-        ><br /><br />
-        <button type="button" onclick="generateSuggestion()">
+        ><br />
+        <!-- <button type="button" onclick="generateSuggestion()">
           Generate Suggestion
-        </button>
+        </button> -->
       </div>
     </form>
 
     <h2 id="suggestion"></h2>
 
-    <!-- Adding explanatory divs around your Hexant -->
     <div id="hexantWrapper">
       <div id="topText">
-        HEAD VOICE FRIENDLY : Narrow Shrill Vowels - get Loud!
+        <h2><em>EE</em></h2>
+        <span
+          >-- HEAD VOICE FRIENDLY : Narrow Shrill Vowels - get Loud! --</span
+        >
+        <h2><em>OO</em></h2>
+        <br />
       </div>
+    </div>
+
+    <div id="centeringDiv">
       <div id="hexant">
         <br />
-        <div id="EE_AY">EE / AY</div>
-        <div id="Oo_OH">Oo / OH</div>
+        <div id="AY">AY!!</div>
+        <div id="OH">OH!!</div>
         <br />
-        <div id="IH">IH</div>
-        <div id="Oe">Oe</div>
+        <i>
+          <div id="IH">IH</div>
+          <div id="Oe">Oe</div></i
+        >
         <br />
         <div id="EH_AA">EH / Aa</div>
         <div id="UH_AH">UH / AH</div>
       </div>
-      <div id="bottomText">
-        BELLOWING SPEAKING VOICE FRIENDLY : Wide Vowels - get Quiet
-      </div>
+    </div>
+
+    <div id="bottomText">
+      BELLOWING SPEAKING VOICE FRIENDLY : Wide Vowels - get Quiet
     </div>
 
     <script>
       const brightSuggestions = [
-        { value: "Aa", text: "Aa for light volume" },
-        { value: "eh", text: "Eh for speaking volume" },
-        { value: "ih", text: "IH for medium volume" },
-        { value: "ay", text: "Ay for LOUD Belting" },
-        { value: "ee", text: "EE for a super narrow LOUD and shrill attack" },
+        { value: "Aa", text: "i want to be quiet & mellow" },
+        { value: "eh", text: "i want to be at SPEAKing volume" },
+        { value: "ay", text: "I'm here for LOUD Belting!!" },
+        { value: "ee", text: "Head Voice it - above my passagio" },
+        { value: "ih", text: "medium volume" },
       ];
 
       const darkSuggestions = [
-        { value: "ah", text: "Ah for light volume" },
-        { value: "uh", text: "Uh for speaking volume" },
-        { value: "oe", text: "Oe for medium volume" },
-        { value: "oh", text: "Oh for LOUD Belting" },
-        { value: "oo", text: "Oo for a super narrow LOUD and shrill attack" },
+        { value: "ah", text: "i want to be quiet & mellow" },
+        { value: "uh", text: "i want to be at SPEAKing volume" },
+        { value: "oh", text: "I'm here for LOUD Belting!!" },
+        { value: "oo", text: "Head Voice it - above my passagio" },
+        { value: "oe", text: "medium volume" },
       ];
 
       function showSuggestionOptions() {
-        console.log("showSuggestionOptions called"); // Debug log
         const brightVowelElem = document.getElementById("brightVowel");
         const darkVowelElem = document.getElementById("darkVowel");
         const suggestionOptionsElem =
@@ -185,13 +197,21 @@
         if (brightVowelElem.value) suggestions = brightSuggestions;
         else if (darkVowelElem.value) suggestions = darkSuggestions;
 
-        console.log("Suggestions:", suggestions); // Debug log
         suggestionSelectElem.innerHTML =
           '<option value="">--Select--</option>' +
           suggestions
             .map((s) => `<option value="${s.value}">${s.text}</option>`)
             .join("");
         suggestionOptionsElem.style.display = "block";
+      }
+
+      function generateSuggestionOnSelect() {
+        const suggestionSelectElem =
+          document.getElementById("suggestionSelect");
+
+        if (suggestionSelectElem.value) {
+          generateSuggestion();
+        }
       }
 
       function generateSuggestion() {
@@ -213,23 +233,18 @@
           );
           suggestionElem.textContent = modifiedWord;
 
-          console.log("Taken Suggestion:", takenSuggestion);
           document.querySelectorAll("#hexant div").forEach((div) => {
             div.style.backgroundColor = "";
-            console.log("Div Text:", div.textContent);
           });
 
-          // Replace the previous relevant part of your code with this corrected part.
           let hexantDiv = Array.from(
             document.querySelectorAll("#hexant div")
           ).find((div) => {
             const upperCaseDivText = div.textContent.toUpperCase();
             const upperCaseTakenSuggestion = takenSuggestion.toUpperCase();
-            console.log("Checking Div:", upperCaseDivText);
             return upperCaseDivText.includes(upperCaseTakenSuggestion);
           });
 
-          console.log("Hexant Div to Highlight:", hexantDiv);
           if (hexantDiv) hexantDiv.style.backgroundColor = "yellow";
         }
       }
