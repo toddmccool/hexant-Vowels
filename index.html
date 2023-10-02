@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <title>Vowel Helper</title>
     <style>
+      #inputsWrapper {
+        display: flex;
+        align-items: center;
+      }
+
+      #problemVowelCharLabel,
+      #problemVowelChar {
+        margin-left: 10px; /* Add space between the inputs */
+      }
       #problemVowelChar {
         display: none;
       }
@@ -92,20 +101,24 @@
     </h2>
     <h1>
       <form id="form">
-        <label>
-          Problem Word
-          <span style="font-size: 0.7em; font-weight: bold; display: inline">
-            (<i
-              >or you can skip to "<a href="#problemVowelChar"
-                >Problem Vowel Character in the Word</a
-              >":↓</i
-            >)
-          </span>
-        </label>
+        <div id="inputsWrapper">
+          <label>
+            Problem Word
+            <span style="font-size: 0.7em; font-weight: bold; display: inline">
+              (<i
+                >(or you can skip to "<a href="#problemVowelChar" id="skipLink"
+                  >Problem Vowel Character in the Word</a
+                >":)</i
+              >)→→→
+            </span>
+          </label>
+          <input type="text" id="problemWord" />
 
-        <input type="text" id="problemWord" /><br />
-        <label id="problemVowelCharLabel"> </label>
-        <input type="text" id="problemVowelChar" maxlength="1" /><br />
+          <!-- Notice the removal of <br /> tag here -->
+          <label id="problemVowelCharLabel"> </label>
+          <input type="text" id="problemVowelChar" maxlength="1" />
+        </div>
+
         <div id="vowelSelection">
           <div id="letterSoundDiv"><i> </i></div>
           <label id="brightLabel">→</label>
@@ -322,11 +335,31 @@
             document.getElementById("problemVowelChar");
           if (problemWord) {
             label.innerHTML = `Problem Vowel in "${problemWord}": `;
-            problemVowelCharInput.style.display = "inline-block"; // Show the input when problemWord is not empty
+            label.style.display = "inline-block"; // Ensuring that this is visible as well.
+            problemVowelCharInput.style.display = "inline-block";
           } else {
             label.innerHTML = "Problem Vowel Character in the Word: ";
-            problemVowelCharInput.style.display = "none"; // Hide the input when problemWord is empty
+            label.style.display = "none";
+            problemVowelCharInput.style.display = "none";
           }
+        });
+
+      document
+        .getElementById("skipLink")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          const problemVowelCharLabel = document.getElementById(
+            "problemVowelCharLabel"
+          );
+          const problemVowelChar = document.getElementById("problemVowelChar");
+          // Sets the display style to inline-block, making them visible.
+          problemVowelCharLabel.style.display = "inline-block";
+          problemVowelChar.style.display = "inline-block";
+          // Setting placeholder dynamically
+          problemVowelChar.setAttribute(
+            "placeholder",
+            "Enter problem vowel here"
+          );
         });
     </script>
   </body>
