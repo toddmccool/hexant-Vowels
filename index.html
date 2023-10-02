@@ -50,7 +50,9 @@
       }
 
       #bottomText {
-        margin-top: 15px;
+        margin: 0;
+        margin-left: 0; /* or whichever value you find suitable */
+        padding-left: 0; /* fka margin-top: 15px; */
       }
 
       #topText h2,
@@ -67,6 +69,12 @@
       #hexant {
         display: inline-block;
       }
+      br {
+        line-height: 0.5;
+      }
+      #UH_AH {
+        margin-bottom: 0; /* This will reduce the space below the #UH_AH if it is not handled in HTML inline style */
+      }
     </style>
   </head>
   <body>
@@ -79,91 +87,106 @@
       voice)
     </h2>
     <h1>
-    <form id="form">
-      <label>
-        Problem Word 
-        <span style="font-size: .70em; font-weight: bold; display:inline;">
-            (<i>or you can skip to "<a href='#problemVowelChar'>Problem Vowel Character in the Word</a>":↓</i>)
-        </span>
-    </label>
-    
-      <input type="text" id="problemWord" /><br /><br />
-      <label id="problemVowelCharLabel"
-        >Problem Vowel Character in the Word:
-      </label>
-      <input type="text" id="problemVowelChar" maxlength="1" /><br />
-      <div id="vowelSelection">
-        <div id="letterSoundDiv"><i> </i></div>
-        <label id="brightLabel">→</label>
-        <select id="brightVowel" onchange="showSuggestionOptions()">
-          <option value="">--Select--</option>
-          <option value="Aa">æ (cat)</option>
-          <option value="eh">eh</option>
-          <option value="ih">ih</option>
-          <option value="ay">ay</option>
-          <option value="ee">ee</option>
-          <option value="ah">iy</option>
-        </select>
-        <label id="darkLabel">→</label>
-        <select id="darkVowel" onchange="showSuggestionOptions()">
-          <option value="">--Select--</option>
-          <option value="ah">ah</option>
-          <option value="ah">eye</option>
-          <option value="uh">uh</option>
-          <option value="oe">oe</option>
-          <option value="oh">oh</option>
-          <option value="oo">oo</option>
-        </select>
-      </div>
-      
+      <form id="form">
+        <label>
+          Problem Word
+          <span style="font-size: 0.7em; font-weight: bold; display: inline">
+            (<i
+              >or you can skip to "<a href="#problemVowelChar"
+                >Problem Vowel Character in the Word</a
+              >":↓</i
+            >)
+          </span>
+        </label>
 
-    
-      <div id="suggestionOptions">
-       <label>How Loud do you want to be ? </label>
-        <select
-          id="suggestionSelect"
-          onchange="generateSuggestionOnSelect();"
-        ></select>
-      </div>
-    </form>
-    <h2 id="suggestion"></h2>
-    <div id="hexantWrapper">
-      <div id="topText">
-        <div style="text-align: center;">
-          <h1 style="display: inline-block; margin: 0 10px;">Bright Vowels</h1>
-          <i><h4 style="display: inline-block; margin: 0 10px;">ay,ee,ih,oh,eh,aa</h4></i>
-          <h1 style="display: inline-block; margin: 0 10px;">॥॥ &nbsp;&nbsp;  Dark Vowels</h1>
-          <i><h4 style="display: inline-block; margin: 0 10px;">oh,oo,oe,uh,ah</h4></i>
+        <input type="text" id="problemWord" /><br /><br />
+        <label id="problemVowelCharLabel"
+          >Problem Vowel Character in the Word:
+        </label>
+        <input type="text" id="problemVowelChar" maxlength="1" /><br />
+        <div id="vowelSelection">
+          <div id="letterSoundDiv"><i> </i></div>
+          <label id="brightLabel">→</label>
+          <select id="brightVowel" onchange="showSuggestionOptions()">
+            <option value="">--Select--</option>
+            <option value="Aa">æ (cat)</option>
+            <option value="eh">eh</option>
+            <option value="ih">ih</option>
+            <option value="ay">ay</option>
+            <option value="ee">ee</option>
+            <option value="ah">iy</option>
+          </select>
+          <label id="darkLabel">→</label>
+          <select id="darkVowel" onchange="showSuggestionOptions()">
+            <option value="">--Select--</option>
+            <option value="ah">ah</option>
+            <option value="ah">eye</option>
+            <option value="uh">uh</option>
+            <option value="oe">oe</option>
+            <option value="oh">oh</option>
+            <option value="oo">oo</option>
+          </select>
         </div>
-        
-        <h2><em>EE</em></h2>
-        <span
-          >-- HEAD VOICE FRIENDLY : Narrow Shrill Vowels - get Loud! --</span
-        >
-        <h2><em>OO</em></h2>
-        <br />
+
+        <div id="suggestionOptions">
+          <label>How Loud do you want to be ? </label>
+          <select
+            id="suggestionSelect"
+            onchange="generateSuggestionOnSelect();"
+          ></select>
+        </div>
+      </form>
+      <h2 id="suggestion"></h2>
+      <div id="hexantWrapper">
+        <div id="topText">
+          <div style="text-align: center">
+            <h1 style="display: inline-block; margin: 0 10px">Bright Vowels</h1>
+            <i
+              ><h4 style="display: inline-block; margin: 0 10px">
+                ay,ee,ih,oh,eh,æ
+              </h4></i
+            >
+            <h1 style="display: inline-block; margin: 0 10px">
+              ॥॥ &nbsp;&nbsp; Dark Vowels
+            </h1>
+            <i
+              ><h4 style="display: inline-block; margin: 0 10px">
+                oh,oo,oe,uh,ah
+              </h4></i
+            >
+          </div>
+          <br /><br />
+          <h2><em>EE</em></h2>
+          <span
+            >-- HEAD VOICE FRIENDLY : Narrow Shrill Vowels - get Loud! --</span
+          >
+          <h2><em>OO</em></h2>
+          <br />
+        </div>
       </div>
-    </div>
-    <div id="centeringDiv">
-      <div id="hexant">
-        <br />
-        <div id="AY">AY!!</div>
-        <div id="OH">OH!!</div>
-        <br />
-        <i>
-          <div id="IH">ih</div>
-          <div id="Oe">oe</div>
-        </i>
-        <br />
-        <div id="EH_AA">eh / æ</div>
-        <div id="UH_AH">uh / ah</div>
+      <div id="centeringDiv">
+        <div id="hexant">
+          ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯<br /><br />
+          <div id="AY">AY!!</div>
+          <div id="OH">OH!!</div>
+          <br />
+          <i>
+            <div id="IH">ih</div>
+            <div id="Oe">oe</div>
+          </i>
+          <br />
+          <div id="EH_AA">eh / æ</div>
+
+          <div id="UH_AH" style="margin-bottom: 0">uh / ah</div>
+        </div>
       </div>
-    </div>
-    <div id="bottomText">
-      BELLOWING SPEAKING VOICE FRIENDLY : Wide Vowels - get Quiet
-   
-  </h1>
-</div>
+
+      <div id="bottomText" style="margin-left: 0; padding-left: 0">
+        ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯<br />SPEAKING VOICE
+        FRIENDLY : Wide Vowels - get Quiet
+      </div>
+    </h1>
+
     <script>
       const brightSuggestions = [
         { value: "æ (cat)", text: "i want to be quiet & mellow" },
@@ -181,38 +204,44 @@
         { value: "oe", text: "medium volume" },
       ];
 
-      document.getElementById("problemVowelChar").addEventListener("input", function () {
-    let problemVowelChar = this.value;
-    let letterSoundDiv = document.getElementById("letterSoundDiv");
-    let brightLabel = document.getElementById("brightLabel");
-    let darkLabel = document.getElementById("darkLabel");
-    let brightVowelSelect = document.getElementById("brightVowel");
-    let darkVowelSelect = document.getElementById("darkVowel");
+      document
+        .getElementById("problemVowelChar")
+        .addEventListener("input", function () {
+          let problemVowelChar = this.value;
+          let letterSoundDiv = document.getElementById("letterSoundDiv");
+          let brightLabel = document.getElementById("brightLabel");
+          let darkLabel = document.getElementById("darkLabel");
+          let brightVowelSelect = document.getElementById("brightVowel");
+          let darkVowelSelect = document.getElementById("darkVowel");
 
-    if (problemVowelChar) {
-        letterSoundDiv.textContent = `How ${problemVowelChar} sounds`;
-        brightLabel.style.display = "none";
-        darkLabel.style.display = "none";
-        brightVowelSelect.style.display = "none";
-        darkVowelSelect.style.display = "none";
+          if (problemVowelChar) {
+            letterSoundDiv.textContent = `How ${problemVowelChar} sounds`;
+            brightLabel.style.display = "none";
+            darkLabel.style.display = "none";
+            brightVowelSelect.style.display = "none";
+            darkVowelSelect.style.display = "none";
 
-        if (problemVowelChar.toLowerCase() === "ie" || ["e", "a"].includes(problemVowelChar.toLowerCase()) && problemVowelChar.toLowerCase() !== "ah") {
-            brightLabel.style.display = "inline-block";
-            brightVowelSelect.style.display = "inline-block";
-        } else if (["o", "u", "i"].includes(problemVowelChar.toLowerCase())) { 
-            darkLabel.style.display = "inline-block";
-            darkVowelSelect.style.display = "inline-block";
-        }
-    } else {
-        letterSoundDiv.textContent = "How that letter Sounds";
-        brightLabel.style.display = "none";
-        darkLabel.style.display = "none";
-        brightVowelSelect.style.display = "none";
-        darkVowelSelect.style.display = "none";
-    }
-});
-
-        
+            if (
+              problemVowelChar.toLowerCase() === "ie" ||
+              (["e", "a"].includes(problemVowelChar.toLowerCase()) &&
+                problemVowelChar.toLowerCase() !== "ah")
+            ) {
+              brightLabel.style.display = "inline-block";
+              brightVowelSelect.style.display = "inline-block";
+            } else if (
+              ["o", "u", "i"].includes(problemVowelChar.toLowerCase())
+            ) {
+              darkLabel.style.display = "inline-block";
+              darkVowelSelect.style.display = "inline-block";
+            }
+          } else {
+            letterSoundDiv.textContent = "How that letter Sounds";
+            brightLabel.style.display = "none";
+            darkLabel.style.display = "none";
+            brightVowelSelect.style.display = "none";
+            darkVowelSelect.style.display = "none";
+          }
+        });
 
       function showSuggestionOptions() {
         const brightVowelElem = document.getElementById("brightVowel");
@@ -261,9 +290,9 @@
             takenSuggestion
           );
 
-          document.getElementById('headerText').style.display = 'none';
-          suggestionElem.innerHTML = '<i>sing the word like this → </i>' + modifiedWord;
-
+          document.getElementById("headerText").style.display = "none";
+          suggestionElem.innerHTML =
+            "<i>sing the word like this → </i>" + modifiedWord;
 
           document.querySelectorAll("#hexant div").forEach((div) => {
             div.style.backgroundColor = "";
