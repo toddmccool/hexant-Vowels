@@ -11,10 +11,7 @@
 
       #problemVowelCharLabel,
       #problemVowelChar {
-        margin-left: 10px; /* Add space between the inputs */
-      }
-      #problemVowelChar {
-        display: none;
+        margin-left: 10px;
       }
 
       #hexant div {
@@ -102,20 +99,28 @@
     <h1>
       <form id="form">
         <div id="inputsWrapper">
-          <label>
-            Problem Word
-            <span style="font-size: 0.7em; font-weight: bold; display: inline">
-              (<i
-                >(or you can skip to "<a href="#problemVowelChar" id="skipLink"
-                  >Problem Vowel Character in the Word</a
-                >":)</i
-              >)→→→
-            </span>
-          </label>
-          <input type="text" id="problemWord" />
-
-          <!-- Notice the removal of <br /> tag here -->
-          <label id="problemVowelCharLabel"> </label>
+          Problem Word Here →
+          <input
+            type="text"
+            id="problemWord"
+            placeholder="Enter the Problem Word Here"
+          />
+          <span
+            style="
+              font-size: 0.7em;
+              font-weight: bold;
+              display: inline;
+              margin-left: 10px;
+            "
+          >
+            <i
+              >...or you can skip to the
+              <a href="#problemVowelChar" id="skipLink"
+                >Problem Vowel Character in the Word</a
+              >→</i
+            >
+          </span>
+          <label id="problemVowelCharLabel"></label>
           <input type="text" id="problemVowelChar" maxlength="1" />
         </div>
 
