@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <title>Vowel Helper</title>
     <style>
+      #problemVowelChar {
+        display: none;
+      }
+
       #hexant div {
         display: inline-block;
         width: 100px;
@@ -312,12 +316,16 @@
       document
         .getElementById("problemWord")
         .addEventListener("keyup", function () {
-          let problemWord = this.value; // get the current value of problemWord input
-          let label = document.getElementById("problemVowelCharLabel"); // get the label element
+          let problemWord = this.value;
+          let label = document.getElementById("problemVowelCharLabel");
+          let problemVowelCharInput =
+            document.getElementById("problemVowelChar");
           if (problemWord) {
             label.innerHTML = `Problem Vowel in "${problemWord}": `;
+            problemVowelCharInput.style.display = "inline-block"; // Show the input when problemWord is not empty
           } else {
-            label.innerHTML = "Problem Vowel Character in the Word: "; // reset to default if problemWord is empty
+            label.innerHTML = "Problem Vowel Character in the Word: ";
+            problemVowelCharInput.style.display = "none"; // Hide the input when problemWord is empty
           }
         });
     </script>
